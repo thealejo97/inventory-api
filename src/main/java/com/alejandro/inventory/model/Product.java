@@ -29,11 +29,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Sale> sales;
 
-    // Empty constructor required by JPA
+    
     public Product() {
     }
     
-    // Constructor to facilitate creation
+    
     public Product(String name, String description, double price, int stock) {
         this.name = name;
         this.description = description;
@@ -41,7 +41,7 @@ public class Product {
         this.stock = stock;
     }
 
-    // Getters and Setters
+    
     public Long getId() {
         return id;
     }
