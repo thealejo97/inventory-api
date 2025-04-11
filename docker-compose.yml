@@ -27,6 +27,12 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 123456
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DEVTOOLS_RESTART_ENABLED: true
+      SPRING_DEVTOOLS_LIVERELOAD_ENABLED: true
+    volumes:
+      - ./:/app
+      - maven_repo:/root/.m2
 
 volumes:
   postgres_data:
+  maven_repo:
