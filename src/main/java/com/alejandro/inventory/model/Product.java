@@ -22,6 +22,7 @@ public class Product {
     @Schema(description = "Unit price of the product", example = "1299.99", required = true)
     private double price;
     
+    
     @Schema(description = "Available quantity in inventory", example = "10", required = true)
     private int stock;
     
