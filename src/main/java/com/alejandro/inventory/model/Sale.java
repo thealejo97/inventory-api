@@ -2,9 +2,14 @@ package com.alejandro.inventory.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.util.List;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
+@Data
 @Entity
+@Table(name = "sales")
 @Schema(description = "Entity that represents a sale in the system")
 public class Sale {
     @Id
@@ -12,16 +17,17 @@ public class Sale {
     @Schema(description = "Unique sale ID", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
+    @Column(nullable = false)
     @Schema(description = "Date and time of the sale", example = "2025-04-11T15:30:45", required = true)
-    private LocalDateTime date;
+    private LocalDateTime saleDate;
     
+    @Column(nullable = false)
     @Schema(description = "Total amount of the sale", example = "299.99", required = true)
-    private double amount;
+    private BigDecimal totalAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    @Schema(description = "Product associated with this sale", required = true)
-    private Product product;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @Schema(description = "Items associated with this sale")
+    private List<SaleItem> items;
     
     
     public Sale() {
@@ -29,37 +35,9 @@ public class Sale {
     
     
     public Sale(LocalDateTime date, double amount, Product product) {
-        this.date = date;
-        this.amount = amount;
+        this.saleDate = date;
+        this.totalAmount = BigDecimal.valueOf(amount);
         this.product = product;
     }
     
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }   
-
-    public Product getProduct() {
-        return product;
-    }
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }
