@@ -12,10 +12,10 @@ import io.swagger.v3.oas.annotations.info.License;
 	info = @Info(
 		title = "Inventory API",
 		version = "1.0",
-		description = "API para la gestión de inventario y ventas",
+		description = "API for inventory and sales management",
 		contact = @Contact(
 			name = "Alejandro",
-			email = "contacto@ejemplo.com"
+			email = "contact@example.com"
 		),
 		license = @License(
 			name = "Apache 2.0",
